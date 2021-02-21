@@ -24,16 +24,19 @@ const display = document.getElementById("display");
 // Here's where I am stuck.  I don't know how to make this function work for
 // each instance of the calculator buttons.  I've tried using this, but the
 // function just clears the display value no matter what I press.
-const pressed = () => {
+function pressed () {
     let button = this.textContent;
-        if (display.textContent = "0") {
-         display.textContent = button;
+        if (display.textContent == "0") {
+            display.textContent = button;
             }
         else {
-            display.textContent + button;
+            let str = display.textContent;
+            str += button;
+            display.textContent = str;
         }
        
     }
+    
 button1.addEventListener("click", pressed);
 button2.addEventListener("click", pressed);
 button3.addEventListener("click", pressed);
