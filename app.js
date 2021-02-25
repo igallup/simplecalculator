@@ -18,12 +18,10 @@ const subtract = document.querySelector("#minus");
 const nthPower = document.querySelector("#nthPower");
 const squared = document.querySelector("#squared");
 const display = document.getElementById("display");
+const displayStorage = "";
+const operator = "";
+const result = "";
 
-// alert("Connected!");
-
-// Here's where I am stuck.  I don't know how to make this function work for
-// each instance of the calculator buttons.  I've tried using this, but the
-// function just clears the display value no matter what I press.
 function pressed () {
     let button = this.textContent;
         if (display.textContent == "0") {
@@ -37,6 +35,19 @@ function pressed () {
        
     }
     
+function operatorPressed () {
+    const displayStorage = display.textContent;
+    display.textContent = "0";
+    const operator = this.textContent;
+    }    
+
+    // Currently hung up here, trying to figure out how to pass the operator's symbol in to perform the required equation...
+function performMath () {
+    const result = displayStorage ${operator} display;
+    display.textContent = result;
+}
+
+
 button1.addEventListener("click", pressed);
 button2.addEventListener("click", pressed);
 button3.addEventListener("click", pressed);
@@ -46,3 +57,5 @@ button6.addEventListener("click", pressed);
 button7.addEventListener("click", pressed);
 button8.addEventListener("click", pressed);
 button9.addEventListener("click", pressed);
+
+equals.addEventListener("click", performMath);
