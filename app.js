@@ -35,29 +35,24 @@ function pressed () {
     }
     
 function operatorPressed () {
-    if (operator == "") {
-        const displayStorage = display.textContent;
+        displayStorage = display.textContent;
         display.textContent = "0";
-        const operator = this.textContent;
-        }
-    else {
-        performMath();
-        const displayStorage = display.textContent;
-        display.textContent = "0";
-        const operator = this.textContent;
     }
 }    
-
-    // Currently hung up here, trying to figure out how to pass const operator's stored value into an equation...
-function performMath () {
-    const result = displayStorage.textContent * display.textContent;
-    display.textContent = result;
+// Need to store the declared operator somehow.  Maybe declare a lastPressed object to use with a perform math function?
+function operatorDivision () {
+    operatorPressed();
 }
 
+// function performMath () {
+//     let result = displayStorage.textContent * display.textContent;
+//     display.textContent = result;
+// }
+
 function reset () {
-    const operator = "";
+    operator = "";
     display.textContent = "0";
-    const displayStorage = "";
+    displayStorage = "";
 }
 function displayClear () {
     display.textContent = "0";
@@ -79,9 +74,9 @@ button9.addEventListener("click", pressed);
 equals.addEventListener("click", performMath);
 allClear.addEventListener("click", reset);
 clear.addEventListener("click", displayClear);
-divide.addEventListener("click", operatorPressed);
-multiply.addEventListener("click", operatorPressed);
-addition.addEventListener("click", operatorPressed);
-subtract.addEventListener("click", operatorPressed);    
-nthPower.addEventListener("click", operatorPressed);
+divide.addEventListener("click", operatorDivision);
+multiply.addEventListener("click", operatorMultiply);
+addition.addEventListener("click", operatorAddition);
+subtract.addEventListener("click", operatorSubtract);    
+nthPower.addEventListener("click", operatorNthPower);
 squared.addEventListener("click", sq);
