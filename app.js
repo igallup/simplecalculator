@@ -13,7 +13,7 @@ const clear = document.querySelector("#clear");
 const equals = document.querySelector("#equals");
 const divide = document.querySelector("#divide");
 const multiply = document.querySelector("#times");
-const add = document.querySelector("#plus");
+const addition = document.querySelector("#plus");
 const subtract = document.querySelector("#minus");
 const nthPower = document.querySelector("#nthPower");
 const squared = document.querySelector("#squared");
@@ -32,21 +32,40 @@ function pressed () {
             str += button;
             display.textContent = str;
         }
-       
     }
     
 function operatorPressed () {
-    const displayStorage = display.textContent;
-    display.textContent = "0";
-    const operator = this.textContent;
-    }    
+    if (operator == "") {
+        const displayStorage = display.textContent;
+        display.textContent = "0";
+        const operator = this.textContent;
+        }
+    else {
+        performMath();
+        const displayStorage = display.textContent;
+        display.textContent = "0";
+        const operator = this.textContent;
+    }
+}    
 
-    // Currently hung up here, trying to figure out how to pass the operator's symbol in to perform the required equation...
+    // Currently hung up here, trying to figure out how to pass const operator's stored value into an equation...
 function performMath () {
-    const result = displayStorage ${operator} display;
+    const result = displayStorage.textContent * display.textContent;
     display.textContent = result;
 }
 
+function reset () {
+    const operator = "";
+    display.textContent = "0";
+    const displayStorage = "";
+}
+function displayClear () {
+    display.textContent = "0";
+}
+function sq () {
+    let result = display.textContent*display.textContent;
+    display.textContent = result;
+}
 
 button1.addEventListener("click", pressed);
 button2.addEventListener("click", pressed);
@@ -57,5 +76,12 @@ button6.addEventListener("click", pressed);
 button7.addEventListener("click", pressed);
 button8.addEventListener("click", pressed);
 button9.addEventListener("click", pressed);
-
 equals.addEventListener("click", performMath);
+allClear.addEventListener("click", reset);
+clear.addEventListener("click", displayClear);
+divide.addEventListener("click", operatorPressed);
+multiply.addEventListener("click", operatorPressed);
+addition.addEventListener("click", operatorPressed);
+subtract.addEventListener("click", operatorPressed);    
+nthPower.addEventListener("click", operatorPressed);
+squared.addEventListener("click", sq);
