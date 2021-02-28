@@ -40,35 +40,35 @@ function operatorPressed () {
     
 
 function operatorDivision () {
-    if (operator.textContent != "") {
+    if (operator.textContent !== "") {
         performMath();
     }
     operatorPressed();
     operator.textContent = "division";
 }
 function operatorMultiply () {
-    if (operator.textContent != "") {
+    if (operator.textContent !== "") {
         performMath();
     }
     operatorPressed();
     operator.textContent = "multiply";
 }
 function operatorAddition () {
-    if (operator.textContent != "") {
+    if (operator.textContent !== "") {
         performMath();
     }
     operatorPressed()
     operator.textContent = "addition";
 }
 function operatorSubtraction () {
-    if (operator.textContent != "") {
+    if (operator.textContent !== "") {
         performMath();
     }
     operatorPressed()
     operator.textContent = "subtraction";
 }
 function operatorNth () {
-    if (operator.textContent != "") {
+    if (operator.textContent !== "") {
         performMath();
     }
     operatorPressed();
