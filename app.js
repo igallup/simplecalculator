@@ -20,10 +20,12 @@ const squared = document.querySelector("#squared");
 const display = document.getElementById("display");
 let displayStorage = "";
 let operator = "";
+let equationDone = false;
 
-function pressed () {
+function pressed() {
     let button = this.textContent;
-        if (display.textContent == "0") {
+        if (display.textContent == "0" || equationDone === true) {
+            equationDone = false;
             display.textContent = button;
             }
         else {
@@ -32,7 +34,7 @@ function pressed () {
             display.textContent = str;
         }
     }
-    
+
 function operatorPressed () {
         displayStorage = display.textContent;
         display.textContent = "0";
@@ -58,35 +60,35 @@ function operatorMultiply() {
         }   
     operatorPressed();
     operator = "multiply";
-}
+    }
 function operatorDivision() {
     if (operator !== "") {
         performMath();
         }   
     operatorPressed();
     operator = "division";
-}
+    }
 function operatorAddition() {
     if (operator !== "") {
         performMath();
         }   
     operatorPressed()
     operator = "addition";
-}
+    }
 function operatorSubtraction() {
     if (operator !== "") {
         performMath();
         }   
     operatorPressed()
     operator = "subtraction";
-}
+    }
 function operatorNth() {
     if (operator !== "") {
         performMath();
         }   
     operatorPressed();
     operator = "Nth";
-}
+    }
 
 // Initially tried operator = "whatever was set" without a second = sign, which locked in division every time
 function performMath () {
@@ -118,8 +120,12 @@ function performMath () {
         }
     display.textContent = result;
     displayStorage = "";
-}
-
+    operator = "";
+    }
+function performEquals() {
+    performMath();
+    equationDone = true;
+    }
 
 button1.addEventListener("click", pressed);
 button2.addEventListener("click", pressed);
@@ -131,7 +137,7 @@ button7.addEventListener("click", pressed);
 button8.addEventListener("click", pressed);
 button9.addEventListener("click", pressed);
 button0.addEventListener("click", pressed);
-equals.addEventListener("click", performMath);
+equals.addEventListener("click", performEquals);
 allClear.addEventListener("click", reset);
 clear.addEventListener("click", displayClear);
 divide.addEventListener("click", operatorDivision);
@@ -140,3 +146,18 @@ addition.addEventListener("click", operatorAddition);
 subtract.addEventListener("click", operatorSubtraction);    
 nthPower.addEventListener("click", operatorNth);
 squared.addEventListener("click", sq);
+
+
+// function pressed () {
+//     let button = this.textContent;
+//         if (display.textContent == "0") {
+//             display.textContent = button;
+//             }
+//         else {
+//             let str = display.textContent;
+//             str += button;
+//             display.textContent = str;
+//         }
+//     } 
+// Preserved just in case
+    
