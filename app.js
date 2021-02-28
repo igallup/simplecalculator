@@ -121,7 +121,8 @@ function performMath () {
     display.textContent = result;
     displayStorage = "";
     operator = "";
-    }
+}
+
 function performEquals() {
     performMath();
     equationDone = true;
