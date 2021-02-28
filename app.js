@@ -18,8 +18,8 @@ const subtract = document.querySelector("#minus");
 const nthPower = document.querySelector("#nthPower");
 const squared = document.querySelector("#squared");
 const display = document.getElementById("display");
-const displayStorage = {textContent: ""};
-const operator = {textContent: ""};
+let displayStorage = "";
+let operator = "";
 
 function pressed () {
     let button = this.textContent;
@@ -34,83 +34,92 @@ function pressed () {
     }
     
 function operatorPressed () {
-        displayStorage.textContent = display.textContent;
+        displayStorage = display.textContent;
         display.textContent = "0";
     }
     
+    function reset() {
+        operator = "";
+        display.textContent = "0";
+        displayStorage = "";
+    }
+    function displayClear() {
+        display.textContent = "0";
+    }
+    function sq() {
+        let result = display.textContent*display.textContent;
+        display.textContent = result;
+        }
 
-function operatorDivision () {
-    if (operator.textContent !== "") {
+
+function operatorMultiply() {
+    if (operator !== "") {
         performMath();
-    }
+        }   
     operatorPressed();
-    operator.textContent = "division";
+    operator = "multiply";
 }
-function operatorMultiply () {
-    if (operator.textContent !== "") {
+function operatorDivision() {
+    if (operator !== "") {
         performMath();
-    }
+        }   
     operatorPressed();
-    operator.textContent = "multiply";
+    operator = "division";
 }
-function operatorAddition () {
-    if (operator.textContent !== "") {
+function operatorAddition() {
+    if (operator !== "") {
         performMath();
-    }
+        }   
     operatorPressed()
-    operator.textContent = "addition";
+    operator = "addition";
 }
-function operatorSubtraction () {
-    if (operator.textContent !== "") {
+function operatorSubtraction() {
+    if (operator !== "") {
         performMath();
-    }
+        }   
     operatorPressed()
-    operator.textContent = "subtraction";
+    operator = "subtraction";
 }
-function operatorNth () {
-    if (operator.textContent !== "") {
+function operatorNth() {
+    if (operator !== "") {
         performMath();
-    }
+        }   
     operatorPressed();
-    operator.textContent = "Nth";
+    operator = "Nth";
 }
 
+// Initially tried operator = "whatever was set" without a second = sign, which locked in division every time
 function performMath () {
     let result;
-    if (operator.textContent = "multiply") {
-        let first = parseInt(displayStorage.textContent);
+    if (operator == "division") {
+        let first = parseInt(displayStorage);
         let second = parseInt(display.textContent);
-            result = (first) * (second);
+        result = first / second;
         }
-    if (operator.textContent = "division") {
-            result = (displayStorage.textContent / display.textContent);
+    else if (operator == "multiply") {
+        let first = parseInt(displayStorage);
+        let second = parseInt(display.textContent);
+        result = first * second;
         }
-    if (operator.textContent = "addition") {
-            result = (displayStorage.textContent + display.textContent);
+    else if (operator == "addition") {
+        let first = parseInt(displayStorage);
+        let second = parseInt(display.textContent);
+        result = first + second;
         }
-    if (operator.textContent = "subtraction") {
-            result = (displayStorage.textContent - display.textContent);
+    else if (operator == "subtraction") {
+        let first = parseInt(displayStorage);
+        let second = parseInt(display.textContent);
+        result = first - second;
         }
-    if (operator.textContent = "Nth") {
-            result = (displayStorage.textContent ^ display.textContent);
+    else if (operator == "Nth") {
+        let first = parseInt(displayStorage);
+        let second = parseInt(display.textContent);
+        result = Math.pow(first, second);
         }
     display.textContent = result;
-    operator.textContent = "";
-    displayStorage.textContent = "";
+    displayStorage = "";
 }
 
-function reset() {
-    operator.textContent = "";
-    display.textContent = "0";
-    displayStorage.textContent = "";
-}
-function displayClear() {
-    display.textContent = "0";
-}
-function sq() {
-    let result = display.textContent*display.textContent;
-    display.textContent = result;
-}
 
 button1.addEventListener("click", pressed);
 button2.addEventListener("click", pressed);
