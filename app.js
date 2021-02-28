@@ -18,9 +18,8 @@ const subtract = document.querySelector("#minus");
 const nthPower = document.querySelector("#nthPower");
 const squared = document.querySelector("#squared");
 const display = document.getElementById("display");
-const displayStorage = "";
-const operator = "";
-const result = "";
+const displayStorage = {textContent: ""};
+const operator = {textContent: ""};
 
 function pressed () {
     let button = this.textContent;
@@ -35,29 +34,80 @@ function pressed () {
     }
     
 function operatorPressed () {
-        displayStorage = display.textContent;
+        displayStorage.textContent = display.textContent;
         display.textContent = "0";
     }
-}    
-// Need to store the declared operator somehow.  Maybe declare a lastPressed object to use with a perform math function?
+    
+
 function operatorDivision () {
+    if (operator.textContent != "") {
+        performMath();
+    }
     operatorPressed();
+    operator.textContent = "division";
+}
+function operatorMultiply () {
+    if (operator.textContent != "") {
+        performMath();
+    }
+    operatorPressed();
+    operator.textContent = "multiply";
+}
+function operatorAddition () {
+    if (operator.textContent != "") {
+        performMath();
+    }
+    operatorPressed()
+    operator.textContent = "addition";
+}
+function operatorSubtraction () {
+    if (operator.textContent != "") {
+        performMath();
+    }
+    operatorPressed()
+    operator.textContent = "subtraction";
+}
+function operatorNth () {
+    if (operator.textContent != "") {
+        performMath();
+    }
+    operatorPressed();
+    operator.textContent = "Nth";
 }
 
-// function performMath () {
-//     let result = displayStorage.textContent * display.textContent;
-//     display.textContent = result;
-// }
+function performMath () {
+    let result;
+    if (operator.textContent = "multiply") {
+        let first = parseInt(displayStorage.textContent);
+        let second = parseInt(display.textContent);
+            result = (first) * (second);
+        }
+    if (operator.textContent = "division") {
+            result = (displayStorage.textContent / display.textContent);
+        }
+    if (operator.textContent = "addition") {
+            result = (displayStorage.textContent + display.textContent);
+        }
+    if (operator.textContent = "subtraction") {
+            result = (displayStorage.textContent - display.textContent);
+        }
+    if (operator.textContent = "Nth") {
+            result = (displayStorage.textContent ^ display.textContent);
+        }
+    display.textContent = result;
+    operator.textContent = "";
+    displayStorage.textContent = "";
+}
 
-function reset () {
-    operator = "";
+function reset() {
+    operator.textContent = "";
     display.textContent = "0";
-    displayStorage = "";
+    displayStorage.textContent = "";
 }
-function displayClear () {
+function displayClear() {
     display.textContent = "0";
 }
-function sq () {
+function sq() {
     let result = display.textContent*display.textContent;
     display.textContent = result;
 }
@@ -71,12 +121,13 @@ button6.addEventListener("click", pressed);
 button7.addEventListener("click", pressed);
 button8.addEventListener("click", pressed);
 button9.addEventListener("click", pressed);
+button0.addEventListener("click", pressed);
 equals.addEventListener("click", performMath);
 allClear.addEventListener("click", reset);
 clear.addEventListener("click", displayClear);
 divide.addEventListener("click", operatorDivision);
 multiply.addEventListener("click", operatorMultiply);
 addition.addEventListener("click", operatorAddition);
-subtract.addEventListener("click", operatorSubtract);    
-nthPower.addEventListener("click", operatorNthPower);
+subtract.addEventListener("click", operatorSubtraction);    
+nthPower.addEventListener("click", operatorNth);
 squared.addEventListener("click", sq);
