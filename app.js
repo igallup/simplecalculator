@@ -90,7 +90,7 @@ function operatorNth() {
     operator = "Nth";
     }
 
-// Initially tried operator = "whatever was set" without a second = sign, which locked in division every time
+
 function performMath () {
     let result;
     if (operator == "division") {
